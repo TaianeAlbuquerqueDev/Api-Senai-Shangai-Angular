@@ -162,5 +162,14 @@ model Event {
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
 
-  author User @relation(fields: [created_by], references: [id])
+  author User         @relation(fields: [created_by], references: [id])
+  images EventImage[]
+}
+
+model EventImage {
+  id       Int    @id @default(autoincrement())
+  event_id Int
+  file_url String
+
+  event Event @relation(fields: [event_id], references: [id], onDelete: Cascade)
 }

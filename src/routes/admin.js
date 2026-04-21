@@ -56,8 +56,11 @@ router.put('/modalities/:id', modalityController.update)
 router.delete('/modalities/:id', modalityController.remove)
 
 // Admin events CRUD (Event-IT)
-router.post('/events', eventController.create)
-router.put('/events/:id', eventController.update)
+// router.post('/events', eventController.create)
+// router.put('/events/:id', eventController.update)
+// router.delete('/events/:id', eventController.remove)
+router.post('/events', upload.array('images', 5), eventController.create)
+router.put('/events/:id', upload.array('images', 5), eventController.update)
 router.delete('/events/:id', eventController.remove)
 
 module.exports = router
